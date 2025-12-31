@@ -37,7 +37,6 @@
 
         nav {
             background-color: var(--secondary);
-            position: -webkit-sticky;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -73,10 +72,11 @@
             background-color: var(--accent);
         }
 
+        /* DROPDOWN MENU */
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.98); /* Quasi opaco */
             min-width: 220px;
             box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
             z-index: 1001;
@@ -97,7 +97,11 @@
             color: var(--primary);
         }
 
+        /* Mostra il menu su PC */
         .nav-item:hover .dropdown-content { display: block; }
+
+        /* Classe per chiudere forzatamente il menu via JS */
+        .force-hide { display: none !important; }
 
         main { max-width: 950px; margin: 3rem auto; padding: 0 1.5rem; }
 
@@ -118,19 +122,16 @@
             display: flex;
             flex-direction: column;
             gap: 2.5rem;
+            scroll-margin-top: 100px; /* Evita che il menu copra il titolo quando si clicca */
         }
 
-        .recipe-image { flex: 1; }
         .recipe-image img {
             width: 100%;
             height: 350px;
             border-radius: 8px;
             object-fit: cover;
             display: block;
-            background-color: #eee;
         }
-
-        .recipe-content { flex: 1.5; }
 
         .tag {
             background: var(--accent);
@@ -152,8 +153,11 @@
         @media (min-width: 768px) {
             .recipe-card { flex-direction: row; align-items: flex-start; }
             .recipe-card.reverse { flex-direction: row-reverse; }
+            .recipe-image { flex: 1; }
+            .recipe-content { flex: 1.5; }
         }
 
+        /* Mobile focus */
         @media (max-width: 768px) {
             .nav-item:focus-within .dropdown-content { display: block; }
         }
@@ -170,15 +174,15 @@
 <nav>
     <ul>
         <li class="nav-item"><a href="#intro">Home</a></li>
-        <li class="nav-item" tabindex="0">
+        <li class="nav-item" tabindex="0" id="recipe-menu">
             <span class="dropbtn">Ricette ▼</span>
-            <div class="dropdown-content">
-                <a href="#crostini">Crostini Toscani</a>
-                <a href="#pasta-fresca">Pasta Fresca</a>
-                <a href="#brodo">Brodo Vegetale</a>
-                <a href="#lasagne">Lasagne al Forno</a>
-                <a href="#impanate">Impanate Siciliane</a>
-                <a href="#spezzatino">Spezzatino con Patate</a>
+            <div class="dropdown-content" id="dropdown-box">
+                <a href="#crostini" onclick="closeMenu()">Crostini Toscani</a>
+                <a href="#pasta-fresca" onclick="closeMenu()">Pasta Fresca</a>
+                <a href="#brodo" onclick="closeMenu()">Brodo Vegetale</a>
+                <a href="#lasagne" onclick="closeMenu()">Lasagne al Forno</a>
+                <a href="#impanate" onclick="closeMenu()">Impanate Siciliane</a>
+                <a href="#spezzatino" onclick="closeMenu()">Spezzatino con Patate</a>
             </div>
         </li>
     </ul>
@@ -193,20 +197,11 @@
 
     <article id="crostini" class="recipe-card">
         <div class="recipe-image">
-            <img src="https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=800&q=80" 
-                 alt="Crostini Toscani" 
-                 onerror="this.src='https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80'">
+            <img src="https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=800&q=80" alt="Crostini Toscani">
         </div>
         <div class="recipe-content">
             <span class="tag">Antipasto</span>
             <h2>Crostini Toscani (Crostini Neri)</h2>
-            <h3>Ingredienti</h3>
-            <ul>
-                <li>500g fegatini di pollo</li>
-                <li>Sedano, carota, cipolla, acciughe, capperi</li>
-                <li>Mezzo bicchiere di Vin Santo</li>
-                <li>Pane toscano sciocco</li>
-            </ul>
             <p>Il segreto della nonna: sfumare col Vin Santo e aggiungere un po' di milza per un sapore più intenso.</p>
         </div>
     </article>
@@ -218,11 +213,6 @@
         <div class="recipe-content">
             <span class="tag">Base</span>
             <h2>Pasta Fresca all'Uovo</h2>
-            <h3>Ingredienti</h3>
-            <ul>
-                <li>400g di farina "00"</li>
-                <li>4 uova grandi</li>
-            </ul>
             <p>Impastare a mano sulla spianatoia finché non è liscia come seta.</p>
         </div>
     </article>
@@ -234,11 +224,6 @@
         <div class="recipe-content">
             <span class="tag">Base</span>
             <h2>Brodo Vegetale</h2>
-            <h3>Ingredienti</h3>
-            <ul>
-                <li>Carote, sedano, cipolla, pomodori maturi</li>
-                <li>Acqua fredda e sale grosso</li>
-            </ul>
             <p>Il profumo che riempie la casa nelle mattine di festa.</p>
         </div>
     </article>
@@ -250,8 +235,7 @@
         <div class="recipe-content">
             <span class="tag">Primo</span>
             <h2>Lasagne al Forno</h2>
-            <h3>Il Ragù</h3>
-            <p>Cotto lentamente per tre ore con carne scelta, passata di pomodoro e tanto amore.</p>
+            <p>Il piatto della domenica: strati di ragù bolognese, besciamella e parmigiano.</p>
         </div>
     </article>
 
@@ -262,11 +246,7 @@
         <div class="recipe-content">
             <span class="tag">Piatto Unico</span>
             <h2>Impanate Siciliane</h2>
-            <h3>Le Versioni</h3>
-            <ul>
-                <li><strong>Salsiccia e Broccoli:</strong> saporite e sostanziose.</li>
-                <li><strong>Cipolle, Patate e Formaggio:</strong> dolci e filanti.</li>
-            </ul>
+            <p>Salsiccia e broccoli o patate e cipolla: il sapore della Sicilia in tavola.</p>
         </div>
     </article>
 
@@ -277,11 +257,6 @@
         <div class="recipe-content">
             <span class="tag">Secondo</span>
             <h2>Spezzatino con Patate</h2>
-            <h3>Ingredienti</h3>
-            <ul>
-                <li>Manzo a cubetti, patate, salsa di pomodoro</li>
-                <li>Vino rosso e odori</li>
-            </ul>
             <p>Una cottura lentissima per rendere la carne tenera come il burro.</p>
         </div>
     </article>
@@ -290,6 +265,19 @@
 <footer>
     <p>&copy; 2024 Le Ricette dello S•T•E•L•F | Il sapore del Natale in famiglia</p>
 </footer>
+
+<script>
+    function closeMenu() {
+        const menu = document.getElementById('dropdown-box');
+        // Chiude il menu aggiungendo una classe temporanea
+        menu.classList.add('force-hide');
+        // Rimuove la classe dopo un attimo per permettere al menu di riaprirsi al prossimo clic
+        setTimeout(() => {
+            menu.classList.remove('force-hide');
+            document.activeElement.blur(); // Toglie il focus per chiudere su mobile
+        }, 500);
+    }
+</script>
 
 </body>
 </html>
