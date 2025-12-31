@@ -15,15 +15,19 @@
             --text-light: #FFFFFF;
         }
 
+        /* Smooth scroll per una navigazione piacevole */
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Georgia', serif; /* Font più tradizionale */
+            font-family: 'Georgia', serif;
             line-height: 1.7;
             margin: 0;
             background-color: var(--bg-light);
             color: var(--text-dark);
         }
 
-        /* Header e Navigazione */
         header {
             background: var(--primary);
             color: var(--text-light);
@@ -37,190 +41,123 @@
 
         header h1 {
             margin: 0;
-            font-size: 2.8rem;
-            font-family: 'Playfair Display', serif; /* Font elegante per il titolo */
+            font-size: 2.2rem;
+            font-family: 'Playfair Display', serif;
         }
 
-        header p {
-            font-style: italic;
-            font-size: 1.1rem;
-            margin-top: 0.5rem;
-        }
-
+        /* Stile del Menu di Navigazione */
         nav {
             background-color: var(--secondary);
-            padding: 0.8rem 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 0.5rem 0;
+            text-align: center;
+            position: sticky;
+            top: 85px; /* Sotto l'header */
+            z-index: 999;
         }
 
+        /* Menu a tendina per Mobile */
+        .dropdown {
+            display: none; /* Nascosto di base su desktop */
+            margin: 10px auto;
+        }
+
+        .dropdown select {
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid var(--accent);
+            background: var(--bg-light);
+            width: 80%;
+            max-width: 300px;
+        }
+
+        /* Menu orizzontale per Desktop */
         nav ul {
             list-style: none;
             padding: 0;
             margin: 0;
             display: flex;
-            flex-wrap: wrap; /* Permette al menu di andare a capo su schermi piccoli */
             justify-content: center;
-            gap: 1.5rem;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         nav a {
             color: var(--text-light);
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.05rem;
-            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            padding: 0.5rem 0.8rem;
             border-radius: 5px;
-            transition: background-color 0.3s ease;
+            transition: 0.3s;
         }
 
-        nav a:hover, nav a.active {
+        nav a:hover {
             background-color: var(--accent);
         }
 
-        /* Contenuto Principale */
+        /* Visualizzazione condizionale Menu/Dropdown */
+        @media (max-width: 768px) {
+            nav ul { display: none; } /* Nasconde i link singoli */
+            .dropdown { display: block; } /* Mostra il selettore */
+            header h1 { font-size: 1.8rem; }
+        }
+
         main {
             max-width: 900px;
-            margin: 2.5rem auto;
+            margin: 2rem auto;
             padding: 0 1.5rem;
         }
 
         .intro-section {
             background-color: var(--bg-dark);
-            padding: 2.5rem;
+            padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             margin-bottom: 3rem;
             text-align: center;
         }
 
-        .intro-section h2 {
-            color: var(--primary);
-            font-size: 2.2rem;
-            margin-top: 0;
-            font-family: 'Playfair Display', serif;
-        }
-
         .recipe-card {
-            background: var(--text-light);
-            padding: 2.5rem;
+            background: white;
+            padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.07);
             margin-bottom: 3rem;
             display: flex;
-            flex-direction: column; /* Impilare elementi su mobile */
+            flex-direction: column;
             gap: 2rem;
         }
 
-        .recipe-card.reverse {
-            flex-direction: column-reverse; /* Inverti ordine su mobile */
-        }
-
-        .recipe-image {
-            flex: 1;
-            min-width: 280px;
-            text-align: center;
-        }
-
         .recipe-image img {
-            max-width: 100%;
+            width: 100%;
             height: auto;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            object-fit: cover;
         }
 
-        .recipe-content {
-            flex: 2;
-        }
-
-        h2 {
-            color: var(--primary);
-            font-size: 2.3rem;
-            border-bottom: 2px solid var(--bg-dark);
-            padding-bottom: 0.8rem;
-            margin-top: 0;
-            font-family: 'Playfair Display', serif;
-        }
-
-        h3 {
-            color: var(--secondary);
-            font-size: 1.6rem;
-            margin-top: 2rem;
-            margin-bottom: 0.8rem;
-            border-bottom: 1px dashed var(--bg-dark);
-            padding-bottom: 0.3rem;
-        }
-
-        .meta-info {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            margin-bottom: 1.8rem;
-            font-style: italic;
-            color: #777;
-            font-size: 0.95rem;
-        }
-
-        .meta-info span {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        ul, ol {
-            padding-left: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        li {
-            margin-bottom: 0.7rem;
-        }
+        h2 { color: var(--primary); font-family: 'Playfair Display', serif; border-bottom: 2px solid var(--bg-dark); }
+        h3 { color: var(--secondary); margin-top: 1.5rem; }
 
         .tag {
             background: var(--accent);
-            color: var(--text-light);
-            padding: 0.3rem 0.8rem;
-            border-radius: 5px;
-            font-size: 0.85rem;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
             font-weight: bold;
-            margin-bottom: 1.5rem;
             display: inline-block;
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 3rem;
-            font-size: 0.9rem;
-            color: #888;
-            background-color: var(--bg-dark);
-            margin-top: 4rem;
-        }
+        footer { text-align: center; padding: 2rem; background: var(--bg-dark); color: #666; }
 
-        /* Icone per meta-info */
-        .icon {
-            display: inline-block;
-            width: 1em;
-            height: 1em;
-            vertical-align: -0.125em;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 100%;
-        }
-        .icon-time { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="%23777"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm216 248c0 118.7-96.3 216-216 216S40 374.7 40 256 136.3 40 256 40s216 96.3 216 216zm-140.4-86.8L220 184.1V128h-32v72l73.4 43.8 17.5-29.2-56.5-33.8zM256 24C128.5 24 24 128.5 24 256s104.5 232 232 232 232-104.5 232-232S383.5 24 256 24zm0 248c-4.4 0-8-3.6-8-8V120c0-4.4 3.6-8 8-8s8 3.6 8 8v120c0 4.4-3.6 8-8 8zM256 8c-4.4 0-8 3.6-8 8v88c0 4.4 3.6 8 8 8s8-3.6 8-8V16c0-4.4-3.6-8-8-8zM256 472c-4.4 0-8 3.6-8 8v32c0 4.4 3.6 8 8 8s8-3.6 8-8v-32c0-4.4-3.6-8-8-8zM8 256c0-4.4 3.6-8 8-8h88c4.4 0 8 3.6 8 8s-3.6 8-8 8H16c-4.4 0-8-3.6-8-8zM496 256c0-4.4 3.6-8 8-8h32c4.4 0 8 3.6 8 8s-3.6 8-8 8h-32c-4.4 0-8-3.6-8-8zM40 256c0-4.4 3.6-8 8-8h24c4.4 0 8 3.6 8 8s-3.6 8-8 8H48c-4.4 0-8-3.6-8-8zM440 256c0-4.4 3.6-8 8-8h24c4.4 0 8 3.6 8 8s-3.6 8-8 8h-24c-4.4 0-8-3.6-8-8z"/></svg>'); }
-        .icon-fire { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="%23777"><path d="M128 0C78.4 0 38.6 35.8 32 84.7V384h224V84.7c-6.6-48.9-46.4-84.7-96-84.7zM256 448H32c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h224c17.7 0 32-14.3 32-32v-32c0-17.7-14.3-32-32-32zm224 0H320c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h160c17.7 0 32-14.3 32-32v-32c0-17.7-14.3-32-32-32zM384 0c-49.6 0-89.4 35.8-96 84.7V384h224V84.7c-6.6-48.9-46.4-84.7-96-84.7z"/></svg>'); }
-        .icon-origin { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="%23777"><path d="M172.3 501.7C170.8 502.9 169 504 167 504s-3.8-1.1-5.3-2.3c-1.2-1-2.4-2.1-3.6-3.3-1.4-1.6-2.9-3.3-4.4-5S148 480 137.9 467.5c-10.1-12.5-22.3-29.3-34.9-49.5-12.6-20.2-25.7-43.9-38.3-70.1C52.4 321 40 288.6 40 256c0-123.7 93.1-224 208-224s208 100.3 208 224c0 32.6-12.4 65-25.7 91.9-12.6 26.2-25.7 49.9-38.3 70.1-12.6 20.2-24.8 37-34.9 49.5-10.1 12.5-19.4 23.4-27.7 32.3-1.5 1.7-3 3.4-4.4 5-1.2 1.2-2.4 2.3-3.6 3.3zM240 256c0 18.2 8.3 34.6 21.6 45.4C274 312.2 290 320 306 320s32-7.8 44.4-18.6c13.3-10.8 21.6-27.2 21.6-45.4 0-35.3-28.7-64-64-64s-64 28.7-64 64zM240 0C128.5 0 32 96.5 32 208c0 47.9 18 92.5 50.4 125.7 33.2 33.2 78 51.3 127.6 51.3 49.6 0 94.4-18.1 127.6-51.3C448 300.5 466 255.9 466 208 466 96.5 371.5 0 260 0zm0 320c-53 0-96-43-96-96s43-96 96-96 96 43 96 96-43 96-96 96zm0-160c-35.3 0-64 28.7-64 64s28.7 64 64 64 64-28.7 64-64-28.7-64-64-64z"/></svg>'); }
-
-
-        /* Media Queries per schermi più grandi */
         @media (min-width: 768px) {
-            .recipe-card {
-                flex-direction: row; /* Torna alla disposizione affiancata */
-            }
-            .recipe-card.reverse {
-                flex-direction: row-reverse;
-            }
+            .recipe-card { flex-direction: row; }
+            .recipe-card.reverse { flex-direction: row-reverse; }
+            .recipe-image { flex: 1; }
+            .recipe-content { flex: 2; }
         }
     </style>
-     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -232,172 +169,101 @@
 <nav>
     <ul>
         <li><a href="#intro">Home</a></li>
-        <li><a href="#crostini">Crostini Toscani</a></li>
-        <li><a href="#pasta-fresca">Pasta Fresca</a></li>
-        <li><a href="#brodo">Brodo Vegetale</a></li>
-        <li><a href="#lasagne">Lasagne al Forno</a></li>
-        <li><a href="#impanate">Impanate Siciliane</a></li>
+        <li><a href="#crostini">Crostini</a></li>
+        <li><a href="#pasta-fresca">Pasta</a></li>
+        <li><a href="#brodo">Brodo</a></li>
+        <li><a href="#lasagne">Lasagne</a></li>
+        <li><a href="#impanate">Impanate</a></li>
         <li><a href="#spezzatino">Spezzatino</a></li>
     </ul>
+
+    <div class="dropdown">
+        <select onchange="location = this.value;">
+            <option value="" selected disabled>Scegli una ricetta...</option>
+            <option value="#intro">Home / Storia</option>
+            <option value="#crostini">Crostini Toscani</option>
+            <option value="#pasta-fresca">Pasta Fresca</option>
+            <option value="#brodo">Brodo Vegetale</option>
+            <option value="#lasagne">Lasagne al Forno</option>
+            <option value="#impanate">Impanate Siciliane</option>
+            <option value="#spezzatino">Spezzatino con Patate</option>
+        </select>
+    </div>
 </nav>
 
 <main>
     <section id="intro" class="intro-section">
         <h2>La Nostra Storia in Cucina</h2>
-        <p>Benvenuti nel nostro ricettario digitale, un omaggio alle tradizioni culinarie che hanno caratterizzato i nostri Natali. L'ispirazione viene dalle ricette delle nonne, piatti semplici ma ricchi di storia toscana e siciliana.</p>
-        <p>Ogni piatto è un ricordo, un profumo che evoca momenti felici intorno alla tavola.</p>
+        <p>Un omaggio alle tradizioni culinarie che hanno caratterizzato i nostri Natali. L'ispirazione viene dalle ricette delle nonne, tra Toscana e Sicilia.</p>
     </section>
 
     <section id="crostini" class="recipe-card">
-        <div class="recipe-image">
-            <img src="https://via.placeholder.com/400x300/8B4513/FFFFFF?text=Crostini+Toscani" alt="Crostini Toscani">
-        </div>
+        <div class="recipe-image"><img src="https://images.unsplash.com/photo-1541014741259-df549fa9ba6f?auto=format&fit=crop&w=400&q=80" alt="Crostini"></div>
         <div class="recipe-content">
             <span class="tag">Antipasto</span>
-            <h2>Crostini Toscani (Crostini Neri)</h2>
-            <div class="meta-info">
-                <span><i class="icon icon-time"></i> Prep: 15 min</span>
-                <span><i class="icon icon-fire"></i> Cottura: 25 min</span>
-                <span><i class="icon icon-origin"></i> Origine: Toscana</span>
-            </div>
+            <h2>Crostini Toscani</h2>
+            <p>I classici fegatini di pollo, saporiti e cremosi.</p>
             <h3>Ingredienti</h3>
-            <ul>
-                <li>500g di fegatini di pollo</li>
-                <li>1 cipolla piccola, 1 carota, 1 gambo di sedano</li>
-                <li>2 acciughe dissalate, 1 cucchiaio di capperi sotto sale</li>
-                <li>1/2 bicchiere di Vin Santo (o vino bianco secco)</li>
-                <li>Brodo di carne q.b.</li>
-                <li>Olio EVO, Burro (facoltativo), Sale e Pepe</li>
-                <li>Pane toscano "sciocco" (senza sale)</li>
-            </ul>
-            <h3>Procedimento</h3>
-            <ol>
-                <li>**Preparazione:** Pulire accuratamente i fegatini e tritarli grossolanamente.</li>
-                <li>**Soffritto:** Preparare un battuto finissimo con cipolla, carota e sedano e farlo appassire in olio EVO.</li>
-                <li>**Cottura:** Aggiungere i fegatini, rosolarli e sfumare con il Vin Santo. Lasciar evaporare l'alcol.</li>
-                <li>**Simmering:** Abbassare la fiamma, aggiungere brodo e cuocere per 15-20 minuti, coperto.</li>
-                <li>**Finale:** Aggiungere capperi e acciughe. Passare il composto al passaverdure (o tritare finemente).</li>
-                <li>**Mantecatura:** Rimettere sul fuoco, aggiungere una noce di burro (se piace) e aggiustare di sale e pepe.</li>
-                <li>**Servizio:** Spalmare su fette di pane toscano, leggermente tostate o inzuppate nel brodo caldo.</li>
-            </ol>
+            <ul><li>500g fegatini, odori (sedano, carota, cipolla), capperi, acciughe, Vin Santo.</li></ul>
         </div>
     </section>
 
     <section id="pasta-fresca" class="recipe-card reverse">
+        <div class="recipe-image"><img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=400&q=80" alt="Pasta"></div>
         <div class="recipe-content">
-            <span class="tag">Primo Piatto</span>
+            <span class="tag">Base</span>
             <h2>Pasta Fresca all'Uovo</h2>
-            <div class="meta-info">
-                <span><i class="icon icon-time"></i> Prep: 30 min</span>
-                <span><i class="icon icon-fire"></i> Riposo: 30 min</span>
-                <span><i class="icon icon-origin"></i> Origine: Italia (Emilia-Romagna)</span>
-            </div>
-            <h3>Ingredienti</h3>
-            <ul>
-                <li>400g di farina "00"</li>
-                <li>4 uova grandi (a temperatura ambiente)</li>
-                <li>Un pizzico di sale (facoltativo)</li>
-            </ul>
-            <h3>Procedimento</h3>
-            <ol>
-                <li>**La Fontana:** Su una spianatoia, disporre la farina a fontana, creando un buco al centro.</li>
-                <li>**Le Uova:** Rompere le uova al centro della fontana, aggiungere il sale.</li>
-                <li>**L'Impasto:** Con una forchetta, sbattere le uova incorporando gradualmente la farina dai bordi. Quando l'impasto diventa denso, proseguire a mano.</li>
-                <li>**Lavorazione:** Impastare energicamente per almeno 10-15 minuti, tirando e ripiegando l'impasto, finché non sarà liscio, elastico e omogeneo.</li>
-                <li>**Riposo:** Avvolgere l'impasto nella pellicola trasparente e lasciarlo riposare a temperatura ambiente per almeno 30 minuti.</li>
-                <li>**Stesura:** Stendere l'impasto con il mattarello o con la macchina per la pasta fino allo spessore desiderato.</li>
-                <li>**Taglio:** Tagliare la pasta nelle forme desiderate (tagliatelle, lasagne, ecc.) e farla asciugare leggermente prima di cuocerla.</li>
-            </ol>
-        </div>
-        <div class="recipe-image">
-            <img src="https://via.placeholder.com/400x300/A0522D/FFFFFF?text=Pasta+Fresca" alt="Pasta Fresca all'Uovo">
+            <p>1 uovo ogni 100g di farina. Il segreto è la lavorazione a mano.</p>
         </div>
     </section>
 
     <section id="brodo" class="recipe-card">
-        <div class="recipe-image">
-            <img src="https://via.placeholder.com/400x300/D2691E/FFFFFF?text=Brodo+Vegetale" alt="Brodo Vegetale">
-        </div>
+        <div class="recipe-image"><img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=400&q=80" alt="Brodo"></div>
         <div class="recipe-content">
-            <span class="tag">Base per Ricette</span>
-            <h2>Brodo Vegetale della Nonna</h2>
-            <div class="meta-info">
-                <span><i class="icon icon-time"></i> Prep: 15 min</span>
-                <span><i class="icon icon-fire"></i> Cottura: 1 ora</span>
-                <span><i class="icon icon-origin"></i> Origine: Mediterranea</span>
-            </div>
-            <h3>Ingredienti</h3>
-            <ul>
-                <li>2 carote grandi</li>
-                <li>2 gambi di sedano</li>
-                <li>1 cipolla grande</li>
-                <li>2 pomodori maturi (o 1 cucchiaio di concentrato)</li>
-                <li>1 patata piccola (facoltativo, per più corpo)</li>
-                <li>Prezzemolo fresco, qualche foglia di alloro, grani di pepe nero</li>
-                <li>2-3 litri d'acqua fredda</li>
-                <li>Sale grosso q.b.</li>
-            </ul>
-            <h3>Procedimento</h3>
-            <ol>
-                <li>**Pulizia:** Lavare e pulire tutte le verdure. Non è necessario sbucciare carote o patate, basta spazzolarle bene. Tagliarle a pezzi grossolani.</li>
-                <li>**Pentola:** Mettere tutte le verdure in una pentola capiente. Aggiungere il prezzemolo, l'alloro e i grani di pepe.</li>
-                <li>**Acqua:** Coprire le verdure con l'acqua fredda. L'acqua fredda aiuta a estrarre meglio i sapori.</li>
-                <li>**Cottura:** Portare lentamente a ebollizione, poi abbassare la fiamma al minimo, coprire e far sobbollire per almeno 1 ora (anche 1 ora e mezza per un sapore più intenso).</li>
-                <li>**Schiumatura:** Durante la cottura, se si forma della schiuma in superficie, eliminarla con una schiumarola.</li>
-                <li>**Filtrare:** A fine cottura, spegnere il fuoco e far riposare per qualche minuto. Filtrare il brodo con un colino a maglie fini, pressando leggermente le verdure per estrarne tutto il liquido.</li>
-                <li>**Conservazione:** Il brodo è pronto per l'uso. Si conserva in frigorifero per 3-4 giorni o si può congelare.</li>
-            </ol>
+            <span class="tag">Base</span>
+            <h2>Brodo Vegetale</h2>
+            <p>Lento e profumato, con verdure fresche di stagione.</p>
         </div>
     </section>
 
     <section id="lasagne" class="recipe-card reverse">
+        <div class="recipe-image"><img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=400&q=80" alt="Lasagne"></div>
         <div class="recipe-content">
-            <span class="tag">Primo Piatto</span>
-            <h2>Lasagne al Forno (alla Bolognese)</h2>
-            <div class="meta-info">
-                <span><i class="icon icon-time"></i> Prep: 60 min</span>
-                <span><i class="icon icon-fire"></i> Cottura: 40 min</span>
-                <span><i class="icon icon-origin"></i> Origine: Emilia-Romagna</span>
-            </div>
-            <h3>Ingredienti</h3>
-            <ul>
-                <li>**Per il Ragù:** 300g carne trita mista, 1 carota, 1 sedano, 1 cipolla, 400g passata di pomodoro, 1/2 bicchiere vino rosso, brodo, olio EVO.</li>
-                <li>**Per la Besciamella:** 50g burro, 50g farina, 500ml latte, noce moscata, sale.</li>
-                <li>250g sfoglie di lasagna fresca (o secca, precotta)</li>
-                <li>100g Parmigiano Reggiano grattugiato</li>
-                <li>Burro per la teglia</li>
-            </ul>
-            <h3>Procedimento</h3>
-            <ol>
-                <li>**Preparare il Ragù:** Soffriggere carota, sedano e cipolla tritati in olio. Aggiungere la carne trita e rosolare bene. Sfuma con vino rosso e lascia evaporare. Aggiungi la passata, un mestolo di brodo, sale e pepe. Cuocere a fuoco lento per almeno 2 ore.</li>
-                <li>**Preparare la Besciamella:** Sciogliere il burro in un pentolino, aggiungere la farina e mescolare per un minuto. Versare il latte caldo a filo, mescolando con una frusta per evitare grumi. Cuocere finché non si addensa. Aggiungere sale e noce moscata.</li>
-                <li>**Assemblare le Lasagne:** Imburrare una teglia da forno. Fare uno strato sottile di besciamella. Adagiare uno strato di sfoglie di lasagna. Coprire con ragù, besciamella e abbondante Parmigiano.</li>
-                <li>**Continuare gli Strati:** Ripetere gli strati fino a esaurimento degli ingredienti, terminando con besciamella, ragù e una generosa spolverata di Parmigiano.</li>
-                <li>**Cottura:** Infornare in forno preriscaldato a 180°C per circa 30-40 minuti, finché la superficie non sarà dorata e croccante.</li>
-                <li>**Riposo:** Lasciare riposare le lasagne per 10-15 minuti fuori dal forno prima di servirle.</li>
-            </ol>
-        </div>
-        <div class="recipe-image">
-            <img src="https://via.placeholder.com/400x300/8B4513/FFFFFF?text=Lasagne+al+Forno" alt="Lasagne al Forno">
+            <span class="tag">Primo</span>
+            <h2>Lasagne al Forno</h2>
+            <p>Strati di sfoglia, ragù cotto 3 ore e besciamella fatta in casa.</p>
         </div>
     </section>
 
     <section id="impanate" class="recipe-card">
-        <div class="recipe-image">
-            <img src="https://via.placeholder.com/400x300/A0522D/FFFFFF?text=Impanate+Siciliane" alt="Impanate Siciliane">
-        </div>
+        <div class="recipe-image"><img src="https://images.unsplash.com/photo-1628191010210-a59de33e5941?auto=format&fit=crop&w=400&q=80" alt="Impanate"></div>
         <div class="recipe-content">
-            <span class="tag">Piatto Unico / Street Food</span>
-            <h2>Impanate Siciliane (Salsiccia e Broccoli & Cipolle e Patate)</h2>
-            <div class="meta-info">
-                <span><i class="icon icon-time"></i> Prep: 45 min</span>
-                <span><i class="icon icon-fire"></i> Cottura: 40-50 min</span>
-                <span><i class="icon icon-origin"></i> Origine: Sicilia</span>
-            </div>
-            <h3>Ingredienti per l'Impasto (base per entrambe)</h3>
+            <span class="tag">Piatto Unico</span>
+            <h2>Impanate Siciliane</h2>
+            <h3>Due versioni tradizionali:</h3>
             <ul>
-                <li>500g farina di grano duro rimacinata</li>
-                <li>Circa 250ml acqua tiepida</li>
-                <li>10g lievito di birra fresco (o 3g secco)</li>
-                <li>1 cucchiaino di sale</li>
-                <li>2-
+                <li><strong>Salsiccia e Broccoli:</strong> Salsiccia a punta di coltello e broccoli (trascinati) saltati.</li>
+                <li><strong>Patate e Cipolla:</strong> Sottili fette di patate, cipolla stufata e formaggio locale.</li>
+            </ul>
+            <p><em>Impasto:</em> Farina di grano duro, acqua, lievito e un filo d'olio.</p>
+        </div>
+    </section>
+
+    <section id="spezzatino" class="recipe-card reverse">
+        <div class="recipe-image"><img src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=400&q=80" alt="Spezzatino"></div>
+        <div class="recipe-content">
+            <span class="tag">Secondo</span>
+            <h2>Spezzatino con Patate</h2>
+            <p>Carne di manzo tenerissima cotta a fuoco lento con pomodoro e patate che si sciolgono in bocca.</p>
+            <h3>Ingredienti</h3>
+            <ul><li>800g Manzo, 500g Patate, Passata di pomodoro, Vino rosso, Sedano, Carota e Cipolla.</li></ul>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Le Ricette dello S•T•E•L•F | Fatto con amore per la famiglia</p>
+</footer>
+
+</body>
+</html>
