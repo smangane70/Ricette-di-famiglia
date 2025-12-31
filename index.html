@@ -33,8 +33,9 @@
         }
 
         header h1 { margin: 0; font-size: 2.5rem; font-family: 'Playfair Display', serif; }
+        header p { font-style: italic; margin-top: 0.5rem; }
 
-        /* NAVBAR STILE NEW MEDIA CAMPAIGNS */
+        /* NAVBAR STILE PROFESSIONALE */
         nav {
             background-color: var(--secondary);
             position: sticky;
@@ -72,7 +73,7 @@
             background-color: var(--accent);
         }
 
-        /* IL MENU A TENDINA (DROPDOWN) */
+        /* DROPDOWN MENU */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -90,7 +91,6 @@
             display: block;
             text-align: left;
             border-bottom: 1px solid #eee;
-            font-size: 0.95rem;
         }
 
         .dropdown-content a:hover {
@@ -98,13 +98,19 @@
             color: var(--accent);
         }
 
-        /* MOSTRA IL MENU AL PASSAGGIO DEL MOUSE */
-        .nav-item:hover .dropdown-content {
-            display: block;
-        }
+        .nav-item:hover .dropdown-content { display: block; }
 
         /* CONTENUTO */
-        main { max-width: 900px; margin: 3rem auto; padding: 0 1.5rem; }
+        main { max-width: 950px; margin: 3rem auto; padding: 0 1.5rem; }
+
+        .intro-section {
+            background-color: var(--bg-dark);
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 4rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
 
         .recipe-card {
             background: white;
@@ -114,15 +120,19 @@
             margin-bottom: 4rem;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
+        .recipe-image { flex: 1; }
         .recipe-image img {
             width: 100%;
-            height: 300px;
+            height: 350px;
             border-radius: 8px;
             object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
+
+        .recipe-content { flex: 1.5; }
 
         .tag {
             background: var(--accent);
@@ -132,16 +142,18 @@
             font-size: 0.8rem;
             text-transform: uppercase;
             font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
         }
 
-        footer { text-align: center; padding: 3rem; background: var(--bg-dark); }
+        h2 { color: var(--primary); font-family: 'Playfair Display', serif; font-size: 2rem; margin-top: 0; }
+        h3 { color: var(--secondary); border-bottom: 1px solid var(--bg-dark); padding-bottom: 0.5rem; }
 
-        /* Responsive */
+        footer { text-align: center; padding: 3rem; background: var(--bg-dark); margin-top: 5rem; }
+
         @media (min-width: 768px) {
-            .recipe-card { flex-direction: row; align-items: center; }
+            .recipe-card { flex-direction: row; align-items: flex-start; }
             .recipe-card.reverse { flex-direction: row-reverse; }
-            .recipe-image { flex: 1; }
-            .recipe-content { flex: 1.5; }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -156,99 +168,123 @@
 <nav>
     <ul>
         <li class="nav-item"><a href="#intro">Home</a></li>
-        
         <li class="nav-item">
-            <span class="dropbtn">Tutte le Ricette ▼</span>
+            <span class="dropbtn">Esplora Ricette ▼</span>
             <div class="dropdown-content">
                 <a href="#crostini">Crostini Toscani</a>
-                <a href="#pasta-fresca">Pasta Fresca all'Uovo</a>
+                <a href="#pasta-fresca">Pasta Fresca</a>
                 <a href="#brodo">Brodo Vegetale</a>
                 <a href="#lasagne">Lasagne al Forno</a>
                 <a href="#impanate">Impanate Siciliane</a>
                 <a href="#spezzatino">Spezzatino con Patate</a>
             </div>
         </li>
-
-        <li class="nav-item"><a href="https://ragubolo-ieiaxfeu.manus.space">Manus Space</a></li>
     </ul>
 </nav>
 
 <main>
-    <section id="intro" style="text-align: center; margin-bottom: 4rem;">
-        <h2>La Nostra Storia</h2>
-        <p>Benvenuti nel nostro ricettario digitale. Qui raccogliamo i sapori che hanno unito la nostra famiglia, dalle colline toscane alle coste siciliane.</p>
+    <section id="intro" class="intro-section">
+        <h2>La Nostra Storia in Cucina</h2>
+        <p>Benvenuti nel nostro ricettario digitale, un omaggio alle tradizioni culinarie che hanno caratterizzato i nostri Natali. L'ispirazione viene dalle ricette delle nonne, piatti semplici ma ricchi di storia toscana e siciliana.</p>
+        <p>Ogni piatto è un ricordo, un profumo che evoca momenti felici intorno alla tavola.</p>
     </section>
 
     <article id="crostini" class="recipe-card">
         <div class="recipe-image">
-            <img src="https://images.unsplash.com/photo-1541014741259-df549fa9ba6f?auto=format&fit=crop&w=600&q=80" alt="Crostini">
+            <img src="https://images.unsplash.com/photo-1541014741259-df549fa9ba6f?auto=format&fit=crop&w=800&q=80" alt="Crostini Toscani Neri">
         </div>
         <div class="recipe-content">
             <span class="tag">Antipasto</span>
-            <h2>Crostini Toscani</h2>
-            <p>Il cuore degli antipasti toscani: fegatini di pollo, capperi e acciughe su pane sciocco.</p>
+            <h2>Crostini Toscani (Crostini Neri)</h2>
+            <h3>Ingredienti</h3>
+            <ul>
+                <li>500g fegatini di pollo</li>
+                <li>Sedano, carota, cipolla, acciughe, capperi</li>
+                <li>Mezzo bicchiere di Vin Santo</li>
+                <li>Pane toscano sciocco</li>
+            </ul>
+            <p>Il segreto della nonna: sfumare col Vin Santo e aggiungere un po' di milza per un sapore più intenso.</p>
         </div>
     </article>
 
     <article id="pasta-fresca" class="recipe-card reverse">
         <div class="recipe-image">
-            <img src="https://images.unsplash.com/photo-1556761223-4c4282c73f77?auto=format&fit=crop&w=600&q=80" alt="Pasta">
+            <img src="https://images.unsplash.com/photo-1556761223-4c4282c73f77?auto=format&fit=crop&w=800&q=80" alt="Pasta Fresca">
         </div>
         <div class="recipe-content">
-            <span class="tag">Primo</span>
+            <span class="tag">Base</span>
             <h2>Pasta Fresca all'Uovo</h2>
-            <p>Farina e uova: la base della cucina italiana fatta in casa con pazienza e amore.</p>
+            <h3>Ingredienti</h3>
+            <ul>
+                <li>400g di farina "00"</li>
+                <li>4 uova grandi</li>
+            </ul>
+            <p>Impastare a mano sulla spianatoia finché non è liscia come seta.</p>
         </div>
     </article>
 
     <article id="brodo" class="recipe-card">
         <div class="recipe-image">
-            <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80" alt="Brodo">
+            <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80" alt="Brodo Vegetale">
         </div>
         <div class="recipe-content">
             <span class="tag">Base</span>
             <h2>Brodo Vegetale</h2>
-            <p>Lento, profumato e genuino. La base perfetta per risotti e minestre invernali.</p>
+            <h3>Ingredienti</h3>
+            <ul>
+                <li>Carote, sedano, cipolla, pomodori maturi</li>
+                <li>Acqua fredda e sale grosso</li>
+            </ul>
+            <p>Il profumo che riempie la casa nelle mattine di festa.</p>
         </div>
     </article>
 
     <article id="lasagne" class="recipe-card reverse">
         <div class="recipe-image">
-            <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&q=80" alt="Lasagne">
+            <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=800&q=80" alt="Lasagne al Forno">
         </div>
         <div class="recipe-content">
             <span class="tag">Primo</span>
             <h2>Lasagne al Forno</h2>
-            <p>Il piatto della domenica: strati di ragù bolognese, besciamella e parmigiano.</p>
+            <h3>Il Ragù</h3>
+            <p>Cotto lentamente per tre ore con carne scelta, passata di pomodoro e tanto amore.</p>
         </div>
     </article>
 
     <article id="impanate" class="recipe-card">
         <div class="recipe-image">
-            <img src="https://images.unsplash.com/photo-1628191010210-a59de33e5941?auto=format&fit=crop&w=600&q=80" alt="Impanate">
+            <img src="https://images.unsplash.com/photo-1628191010210-a59de33e5941?auto=format&fit=crop&w=800&q=80" alt="Impanate Siciliane">
         </div>
         <div class="recipe-content">
             <span class="tag">Piatto Unico</span>
             <h2>Impanate Siciliane</h2>
-            <p>Dalla tradizione siciliana: scrigni di pasta ripieni di salsiccia e broccoli o patate e cipolla.</p>
+            <h3>Le Versioni</h3>
+            <ul>
+                <li><strong>Salsiccia e Broccoli:</strong> saporite e sostanziose.</li>
+                <li><strong>Cipolle, Patate e Formaggio:</strong> dolci e filanti.</li>
+            </ul>
         </div>
     </article>
 
     <article id="spezzatino" class="recipe-card reverse">
         <div class="recipe-image">
-            <img src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=600&q=80" alt="Spezzatino">
+            <img src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=800&q=80" alt="Spezzatino con patate">
         </div>
         <div class="recipe-content">
             <span class="tag">Secondo</span>
             <h2>Spezzatino con Patate</h2>
-            <p>Carne tenerissima cotta a lungo nel pomodoro, accompagnata da patate saporite.</p>
+            <h3>Ingredienti</h3>
+            <ul>
+                <li>Manzo a cubetti, patate, salsa di pomodoro</li>
+                <li>Vino rosso e odori</li>
+            </ul>
+            <p>Una cottura lentissima per rendere la carne tenera come il burro.</p>
         </div>
     </article>
-
 </main>
 
 <footer>
-    <p>&copy; 2024 Le Ricette dello S•T•E•L•F | Tradizione in famiglia</p>
+    <p>&copy; 2024 Le Ricette dello S•T•E•L•F | Il sapore del Natale in famiglia</p>
 </footer>
 
 </body>
