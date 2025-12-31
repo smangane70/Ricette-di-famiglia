@@ -35,7 +35,6 @@
         header h1 { margin: 0; font-size: 2.5rem; font-family: 'Playfair Display', serif; }
         header p { font-style: italic; margin-top: 0.5rem; }
 
-        /* NAVBAR FISSA */
         nav {
             background-color: var(--secondary);
             position: -webkit-sticky;
@@ -74,7 +73,6 @@
             background-color: var(--accent);
         }
 
-        /* DROPDOWN MENU - FUNZIONANTE */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -99,10 +97,8 @@
             color: var(--primary);
         }
 
-        /* Mostra il menu su PC al passaggio del mouse */
         .nav-item:hover .dropdown-content { display: block; }
 
-        /* CONTENUTO */
         main { max-width: 950px; margin: 3rem auto; padding: 0 1.5rem; }
 
         .intro-section {
@@ -131,6 +127,7 @@
             border-radius: 8px;
             object-fit: cover;
             display: block;
+            background-color: #eee;
         }
 
         .recipe-content { flex: 1.5; }
@@ -152,13 +149,11 @@
 
         footer { text-align: center; padding: 3rem; background: var(--bg-dark); margin-top: 5rem; }
 
-        /* Responsive */
         @media (min-width: 768px) {
             .recipe-card { flex-direction: row; align-items: flex-start; }
             .recipe-card.reverse { flex-direction: row-reverse; }
         }
 
-        /* Fix per touch su mobile */
         @media (max-width: 768px) {
             .nav-item:focus-within .dropdown-content { display: block; }
         }
@@ -175,7 +170,8 @@
 <nav>
     <ul>
         <li class="nav-item"><a href="#intro">Home</a></li>
-        <li class="nav-item" tabindex="0"> <span class="dropbtn">Ricette ▼</span>
+        <li class="nav-item" tabindex="0">
+            <span class="dropbtn">Ricette ▼</span>
             <div class="dropdown-content">
                 <a href="#crostini">Crostini Toscani</a>
                 <a href="#pasta-fresca">Pasta Fresca</a>
@@ -197,7 +193,9 @@
 
     <article id="crostini" class="recipe-card">
         <div class="recipe-image">
-            <img src="https://images.unsplash.com/photo-1541014741259-df549fa9ba6f?q=80&w=1000&auto=format&fit=crop" alt="Crostini Toscani">
+            <img src="https://images.unsplash.com/photo-1541529086526-db283c563270?auto=format&fit=crop&w=800&q=80" 
+                 alt="Crostini Toscani" 
+                 onerror="this.src='https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80'">
         </div>
         <div class="recipe-content">
             <span class="tag">Antipasto</span>
@@ -215,7 +213,7 @@
 
     <article id="pasta-fresca" class="recipe-card reverse">
         <div class="recipe-image">
-            <img src="https://images.unsplash.com/photo-1556761223-4c4282c73f77?q=80&w=1000&auto=format&fit=crop" alt="Pasta Fresca">
+            <img src="https://images.unsplash.com/photo-1556761223-4c4282c73f77?auto=format&fit=crop&w=800&q=80" alt="Pasta Fresca">
         </div>
         <div class="recipe-content">
             <span class="tag">Base</span>
@@ -231,7 +229,7 @@
 
     <article id="brodo" class="recipe-card">
         <div class="recipe-image">
-            <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=1000&auto=format&fit=crop" alt="Brodo Vegetale">
+            <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80" alt="Brodo Vegetale">
         </div>
         <div class="recipe-content">
             <span class="tag">Base</span>
@@ -247,7 +245,7 @@
 
     <article id="lasagne" class="recipe-card reverse">
         <div class="recipe-image">
-            <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=1000&auto=format&fit=crop" alt="Lasagne al Forno">
+            <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=800&q=80" alt="Lasagne al Forno">
         </div>
         <div class="recipe-content">
             <span class="tag">Primo</span>
@@ -259,7 +257,7 @@
 
     <article id="impanate" class="recipe-card">
         <div class="recipe-image">
-            <img src="https://images.unsplash.com/photo-1628191010210-a59de33e5941?q=80&w=1000&auto=format&fit=crop" alt="Impanate Siciliane">
+            <img src="https://images.unsplash.com/photo-1628191010210-a59de33e5941?auto=format&fit=crop&w=800&q=80" alt="Impanate Siciliane">
         </div>
         <div class="recipe-content">
             <span class="tag">Piatto Unico</span>
@@ -274,7 +272,7 @@
 
     <article id="spezzatino" class="recipe-card reverse">
         <div class="recipe-image">
-            <img src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?q=80&w=1000&auto=format&fit=crop" alt="Spezzatino con patate">
+            <img src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=800&q=80" alt="Spezzatino con patate">
         </div>
         <div class="recipe-content">
             <span class="tag">Secondo</span>
